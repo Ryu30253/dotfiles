@@ -59,6 +59,7 @@ NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundle 'Shougo/vimfiler'
 
+NeoBundle 'LeafCage/yankround.vim'
 
 call neobundle#end()
 filetype plugin indent on
@@ -164,7 +165,7 @@ omap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
-"YankRound キーマップ
+"YankRound マッピング
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap gp <Plug>(yankround-gp)
@@ -185,6 +186,8 @@ set title    "編集中のファイル名を表示する
 set showcmd    "入力中のコマンドを表示する
 set ruler    "座標を表示する
 set showmatch   "閉じ括弧の入力時に対応する括弧を表示する
+
+
 set matchtime=3 "showmatchの表示時間
 set laststatus=2    "ステータスラインを常に表示する
 
