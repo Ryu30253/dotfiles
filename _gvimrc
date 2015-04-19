@@ -1,16 +1,17 @@
-
-
-"全角文字の設定
+"----------
+" 基本的な設定
+"----------
+set showtabline=2
+set imdisable
+set guioptions-=T
+set antialias
+set tabstop=3
+set number
+set nobackup
+set visualbell t_vb=
+set nowrapscan
+set columns=100
+set lines=48
+set guifont=Sauce Code Powerline:h14
 set guifontwide=Sauce Code Powerline:h14
-"Display
-colorscheme pablo
-
-syntax on   "シンタックスカラーリングを設定する
-set title    "編集中のファイル名を表示する
-set showcmd    "入力中のコマンドを表示する
-set ruler    "座標を表示する
-set showmatch   "閉じ括弧の入力時に対応する括弧を表示する
-set matchtime=3 "showmatchの表示時間
-set laststatus=2    "ステータスラインを常に表示する
-
-
+colorscheme desert
