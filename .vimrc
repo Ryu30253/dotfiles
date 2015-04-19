@@ -53,6 +53,15 @@ NeoBundle 'ujihisa/quicklearn'
 nnoremap <space>l :<C-u>Unite quicklearn -immediately<Cr>
 
 "NeoBundle 'osyo-manga/unite-quickrun_config'
+NeoBundle 'scrooloose/syntastic.git'
+
+NeoBundle 'alpaca-tc/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'Lokaltog/powerline-fontpatcher'
+NeoBundle "kana/vim-textobj-user"
+NeoBundle "osyo-manga/vim-textobj-multiblock"
+NeoBundle 'yonchu/accelerated-smooth-scroll'
+NeoBundle 'LeafCage/yankround.vim'
 
 call neobundle#end()
 filetype plugin indent on
@@ -151,3 +160,34 @@ unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC> "
+
+"Textobj-multiblock マッピング
+omap ab <Plug>(textobj-multiblock-a)
+omap ib <Plug>(textobj-multiblock-i)
+vmap ab <Plug>(textobj-multiblock-a)
+vmap ib <Plug>(textobj-multiblock-i)
+
+"YankRound キーマップ
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+"半角文字の設定
+"set guifont=Sauce Code Powerline:h14
+
+"全角文字の設定
+"set guifontwide=Sauce Code Powerline:h14
+"Display
+"colorscheme desert
+set background=dark
+syntax on   "シンタックスカラーリングを設定する
+set title    "編集中のファイル名を表示する
+set showcmd    "入力中のコマンドを表示する
+set ruler    "座標を表示する
+set showmatch   "閉じ括弧の入力時に対応する括弧を表示する
+set matchtime=3 "showmatchの表示時間
+set laststatus=2    "ステータスラインを常に表示する
+
