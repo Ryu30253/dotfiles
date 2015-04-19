@@ -1,4 +1,5 @@
-tart Neobundle Settings.
+"---------------------------
+"start Neobundle Settings.
 "---------------------------
 " bundleで管理するディレクトリを指定
 set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -15,34 +16,34 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 NeoBundle 'Lokaltog/vim-easymotion'
-Requiredsymotion-fl
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/neocomplete.vim'
 "neocomplete設定　ここから
-if !exists('g:neocomplete#keyword_patterns')
-	let g:neocomplete#keyword_patterns = {}
+" if_luaが有効ならneocompleteを使う
+NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
+
+if neobundle#is_installed('neocomplete')
+    " neocomplete用設定
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_smart_case = 1
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns._ = '\h\w*'
+elseif neobundle#is_installed('neocomplcache')
+    " neocomplcache用設定
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_ignore_case = 1
+    let g:neocomplcache_enable_smart_case = 1
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns._ = '\h\w*'
+    let g:neocomplcache_enable_camel_case_completion = 1
+    let g:neocomplcache_enable_underbar_completion = 1
 endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
-
-if !exists('g:neocomplete#sources#dictionary#dictionaries')
-	let g:neocomplete#sources#dictionary#dictionaries = {}
-endif
-let dict = g:neocomplete#sources#dictionary#dictionaries
-
-let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
-let g:neocomplete#enable_ignore_case = 0
-let g:neocomplete#enable_smart_case  = 1
-let g:neocomplete#enable_fuzzy_completion = 0
-
-call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
-call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
-
-inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
-inoremap <expr><CR>   pumvisible() ? "\<C-n>" . neocomplete#close_popup()  : "<CR>"
-inoremap <expr><C-e>  pumvisible() ? neocomplete#close_popup() : "<End>"
-inoremap <expr><C-c>  neocomplete#cancel_popup()
-inoremap <expr><C-u>  neocomplete#undo_completion()
-inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "ここまで　neocomplete設定
 
 NeoBundle 'junegunn/vim-easy-align'
@@ -95,7 +96,7 @@ NeoBundleCheck
 " End Neobundle Settings.
 "-------------------------
 
-[Backspace] で既存の文字を削除できるように設定
+"[Backspace] で既存の文字を削除できるように設定
 "  start - 既存の文字を削除できるように設定
 "  eol - 行頭で[Backspace]を使用した場合上の行と連結
 "  indent - オートインデントモードでインデントを削除できるように設定
@@ -166,18 +167,13 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " 全部乗せ
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer
-file_mru bookmark file<CR>
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j>
-unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j>
-unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 " ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l>
-unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l>
-unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC> "
@@ -216,15 +212,6 @@ set laststatus=2    "ステータスラインを常に表示する
 
 set wildmenu	"コマンドモードの補完をTabキーでできるように
 set ignorecase "補完するときに大文字小文字区別しない
-
-".gvimrc カラー設定
-""カラー設定した後にCursorIMを定義する方法
-colorscheme mycolor
-
-if has('multi_byte_ime')
-	highlight Cursor guifg=NONE guibg=Green
-	highlight CursorIM guifg=NONE guibg=Purple
-endif
 
 """"""""""""""""""""""""""""""
 "挿入モード時、ステータスラインの色を変更
@@ -265,3 +252,5 @@ noremap j <Nop>
 noremap k <Nop>
 noremap l <Nop>
 
+" Unite 設定　候補を実行したら新しいタブでファイルを開きたい
+call unite#custom_default_action('file', 'tabopen')
