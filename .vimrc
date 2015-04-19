@@ -57,11 +57,8 @@ NeoBundle 'scrooloose/syntastic.git'
 
 NeoBundle 'alpaca-tc/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
-NeoBundle 'Lokaltog/powerline-fontpatcher'
-NeoBundle "kana/vim-textobj-user"
-NeoBundle "osyo-manga/vim-textobj-multiblock"
-NeoBundle 'yonchu/accelerated-smooth-scroll'
-NeoBundle 'LeafCage/yankround.vim'
+NeoBundle 'Shougo/vimfiler'
+
 
 call neobundle#end()
 filetype plugin indent on
@@ -190,4 +187,7 @@ set ruler    "座標を表示する
 set showmatch   "閉じ括弧の入力時に対応する括弧を表示する
 set matchtime=3 "showmatchの表示時間
 set laststatus=2    "ステータスラインを常に表示する
+
+set wildmenu	"コマンドモードの補完をTabキーでできるように
+set ignorecase "補完するときに大文字小文字区別しない
 
