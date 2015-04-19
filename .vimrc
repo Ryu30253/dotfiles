@@ -17,10 +17,32 @@ NeoBundle 'Lokaltog/vim-easymotion'
 Requiredsymotion-fl
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neocomplete.vim'
-" 補完を有効にする
-let g:neocomplete#enable_at_startup = 1
-" 補完に時間がかかってもスキップしない
-let g:neocomplete#skip_auto_completion_time = ""
+"neocomplete設定　ここから
+if !exists('g:neocomplete#keyword_patterns')
+	let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
+
+if !exists('g:neocomplete#sources#dictionary#dictionaries')
+	let g:neocomplete#sources#dictionary#dictionaries = {}
+endif
+let dict = g:neocomplete#sources#dictionary#dictionaries
+
+let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax\|Log.txt'
+let g:neocomplete#enable_ignore_case = 0
+let g:neocomplete#enable_smart_case  = 1
+let g:neocomplete#enable_fuzzy_completion = 0
+
+call neocomplete#custom_source('_', 'sorters',  ['sorter_length'])
+call neocomplete#custom_source('_', 'matchers', ['matcher_head'])
+
+inoremap <expr><C-n>  pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+inoremap <expr><CR>   pumvisible() ? "\<C-n>" . neocomplete#close_popup()  : "<CR>"
+inoremap <expr><C-e>  pumvisible() ? neocomplete#close_popup() : "<End>"
+inoremap <expr><C-c>  neocomplete#cancel_popup()
+inoremap <expr><C-u>  neocomplete#undo_completion()
+inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+"ここまで　neocomplete設定
 
 NeoBundle 'junegunn/vim-easy-align'
 "NeoBundle 'Townk/vim-autoclose'
@@ -193,4 +215,46 @@ set laststatus=2    "ステータスラインを常に表示する
 
 set wildmenu	"コマンドモードの補完をTabキーでできるように
 set ignorecase "補完するときに大文字小文字区別しない
+
+".gvimrc カラー設定
+""カラー設定した後にCursorIMを定義する方法
+colorscheme mycolor
+
+if has('multi_byte_ime')
+	highlight Cursor guifg=NONE guibg=Green
+	highlight CursorIM guifg=NONE guibg=Purple
+endif
+
+""""""""""""""""""""""""""""""
+"挿入モード時、ステータスラインの色を変更
+"""""""""""""""""""""""""""""""
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+	augroup InsertHook
+		autocmd!
+		autocmd InsertEnter * call s:StatusLine('Enter')
+		autocmd InsertLeave * call s:StatusLine('Leave')
+	augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+	if a:mode == 'Enter'
+		silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+		silent exec g:hi_insert
+	else
+		highlight clear StatusLine
+		silent exec s:slhlcmd
+	endif
+endfunction
+
+function! s:GetHighlight(hi)
+	redir => hl
+	exec 'highlight '.a:hi
+	redir END
+	let hl = substitute(hl, '[\r\n]', '', 'g')
+	let hl = substitute(hl, 'xxx', '', '')
+	return hl
+endfunction
 

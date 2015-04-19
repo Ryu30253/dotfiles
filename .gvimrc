@@ -15,3 +15,4 @@ set lines=48
 set guifont=Sauce Code Powerline:h14
 set guifontwide=Sauce Code Powerline:h14
 colorscheme desert
+
