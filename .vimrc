@@ -11,6 +11,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
  
 " 今後このあたりに追加のプラグインをどんどん書いて行きます！！"
 NeoBundle 'surround.vim' 
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -132,11 +133,11 @@ set wildmenu wildmode=list:full
 " 自動的にファイルを読み込むパスを設定 ~/.vim/userautoload/*vim
 set runtimepath+=~/.vim/
 runtime! userautoload/*.vim
-nmap s <Plug>(easymotion-s2)
+map s <Plug>(easymotion-s2)
 map f <Plug>(easymotion-fl)
 map t <Plug>(easymotion-tl)
-map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
+map F <Plug>(easymotion-Fl)
 map <space>j <Plug>(easymotion-j)
 map <space>k <Plug>(easymotion-k)
 set autoindent
@@ -257,4 +258,10 @@ function! s:GetHighlight(hi)
 	let hl = substitute(hl, 'xxx', '', '')
 	return hl
 endfunction
+
+"vim トレーニング1文字移動禁止
+noremap h <Nop>
+noremap j <Nop>
+noremap k <Nop>
+noremap l <Nop>
 
