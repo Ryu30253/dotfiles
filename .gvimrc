@@ -12,7 +12,5 @@ set visualbell t_vb=
 set nowrapscan
 set columns=100
 set lines=48
-set guifont=Sauce Code Powerline:h14
-set guifontwide=Sauce Code Powerline:h14
 colorscheme desert
 

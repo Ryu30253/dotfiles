@@ -92,8 +92,8 @@ nnoremap <space>l :<C-u>Unite quicklearn -immediately<Cr>
 "NeoBundle 'osyo-manga/unite-quickrun_config'
 NeoBundle 'scrooloose/syntastic.git'
 
-NeoBundle 'alpaca-tc/alpaca_powertabline'
-NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+NeoBundle 'itchyny/lightline.vim'
+
 NeoBundle 'Shougo/vimfiler'
 
 NeoBundle 'LeafCage/yankround.vim'
