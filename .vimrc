@@ -94,7 +94,7 @@ nnoremap <space>l :<C-u>Unite quicklearn -immediately<Cr>
 NeoBundle 'scrooloose/syntastic.git'
 
 "ステータスラインはmacとwinだけ
-if has('mac') | has('win64')
+if has('mac') || has ('win64')
 	NeoBundle 'itchyny/lightline.vim'
 endif
 
@@ -202,7 +202,7 @@ omap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
-if has('mac') | has('win64')
+if has('mac') || has('win64')
 	"YankRound マッピング
 	nmap p <Plug>(yankround-p)
 	nmap P <Plug>(yankround-P)
