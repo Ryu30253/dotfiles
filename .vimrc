@@ -53,12 +53,8 @@ NeoBundle "tyru/caw.vim"
 " \c でカーソル行をコメントアウト
 " 再度 \c でコメントアウトを解除
 " 選択してから複数行の \c も可能
-nmap @c <Plug>(caw:I:toggle)
-vmap @c <Plug>(caw:I:toggle)
-
-" \C でコメントアウトの解除
-nmap @c <Plug>(caw:I:uncomment)
-vmap @c <Plug>(caw:I:uncomment)
+nmap \c <Plug>(caw:I:toggle)
+vmap \c <Plug>(caw:I:toggle)
 
 NeoBundle 'junegunn/vim-easy-align'
 "NeoBundle 'Townk/vim-autoclose'
@@ -126,7 +122,7 @@ set backspace=start,eol,indent
 "  [ - [←]          挿入モード 置換モード
 "  ] - [→]          挿入モード 置換モード
 "  ~ - ~            ノーマルモード
-set whichwrap=b,s,[,],,~
+"set whichwrap=b,s[,],,~
 " マウス機能有効化
 set mouse=a
 " シンタックスハイライト有効化 (背景黒向け。白はコメントアウト
@@ -167,9 +163,9 @@ set smartindent
 " 挿入モードでのカーソル移動
 inoremap <C-b> <C-g>u<C-h>
 inoremap <C-h> <C-g>u<C-h>
-inoremap <C-j> <Esc>
+inoremap <C-[> <Esc>
 
-vnoremap <C-j> <Esc>
+vnoremap <C-[> <Esc>
 
 " unite.vim
 "入力モードで開始する
