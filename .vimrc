@@ -93,7 +93,10 @@ nnoremap <space>l :<C-u>Unite quicklearn -immediately<Cr>
 "NeoBundle 'osyo-manga/unite-quickrun_config'
 NeoBundle 'scrooloose/syntastic.git'
 
-NeoBundle 'itchyny/lightline.vim'
+"ステータスラインはmacとwinだけ
+if has('mac') | has('win64')
+	NeoBundle 'itchyny/lightline.vim'
+endif
 
 NeoBundle 'Shougo/vimfiler'
 
@@ -199,13 +202,15 @@ omap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
-"YankRound マッピング
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
+if has('mac') | has('win64')
+	"YankRound マッピング
+	nmap p <Plug>(yankround-p)
+	nmap P <Plug>(yankround-P)
+	nmap gp <Plug>(yankround-gp)
+	nmap gP <Plug>(yankround-gP)
+	nmap <C-p> <Plug>(yankround-prev)
+	nmap <C-n> <Plug>(yankround-next)
+endif
 
 "半角文字の設定
 "set guifont=Sauce Code Powerline:h14
