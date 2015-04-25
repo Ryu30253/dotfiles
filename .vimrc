@@ -3,7 +3,8 @@
 "---------------------------
 " bundleで管理するディレクトリを指定
 set runtimepath+=~/.vim/bundle/neobundle.vim/
- 
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
  
