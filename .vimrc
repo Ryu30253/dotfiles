@@ -44,9 +44,9 @@ elseif neobundle#is_installed('neocomplcache')
     let g:neocomplcache_enable_camel_case_completion = 1
     let g:neocomplcache_enable_underbar_completion = 1
 endif
+"ここまで　neocomplete設定
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-"ここまで　neocomplete設定
 
 NeoBundle "tyru/caw.vim"
 "コメントアウトを切り替えるマッピング
@@ -161,8 +161,23 @@ set tabstop=3
 set smartindent
 
 " 挿入モードでのカーソル移動
-inoremap <C-b> <C-g>u<C-h>
-inoremap <C-h> <C-g>u<C-h>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" カーソル前の文字削除
+inoremap  <C-b> <BS>
+" カーソル後の文字削除
+inoremap  <C-x> <Del>
+" カーソルから行頭まで削除
+inoremap  <C-.> <Esc>lc^
+" カーソルから行末まで削除
+inoremap  <C-d> <Esc>lc$
+" カーソルから行末までヤンク
+inoremap  <C-y> <Esc>ly$<Insert>
+
+"ESCマップ
 inoremap <C-[> <Esc>
 
 vnoremap <C-[> <Esc>
