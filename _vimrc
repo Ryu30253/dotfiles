@@ -24,6 +24,7 @@ NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
 if neobundle#is_installed('neocomplete')
     " neocomplete用設定
     let g:neocomplete#enable_at_startup = 1
+	 let g:neocomplete#skip_auto_completion_time = ""
     let g:neocomplete#enable_ignore_case = 1
     let g:neocomplete#enable_smart_case = 1
     if !exists('g:neocomplete#keyword_patterns')
@@ -45,6 +46,18 @@ endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "ここまで　neocomplete設定
+
+NeoBundle "tyru/caw.vim"
+"コメントアウトを切り替えるマッピング
+" \c でカーソル行をコメントアウト
+" 再度 \c でコメントアウトを解除
+" 選択してから複数行の \c も可能
+nmap @c <Plug>(caw:I:toggle)
+vmap @c <Plug>(caw:I:toggle)
+
+" \C でコメントアウトの解除
+nmap @c <Plug>(caw:I:uncomment)
+vmap @c <Plug>(caw:I:uncomment)
 
 NeoBundle 'junegunn/vim-easy-align'
 "NeoBundle 'Townk/vim-autoclose'
@@ -84,6 +97,7 @@ NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
 NeoBundle 'Shougo/vimfiler'
 
 NeoBundle 'LeafCage/yankround.vim'
+"NeoBundle 'Shougo/neosnippet'
 
 call neobundle#end()
 filetype plugin indent on
@@ -247,10 +261,12 @@ function! s:GetHighlight(hi)
 endfunction
 
 "vim トレーニング1文字移動禁止
-noremap h <Nop>
-noremap j <Nop>
-noremap k <Nop>
-noremap l <Nop>
 
 " Unite 設定　候補を実行したら新しいタブでファイルを開きたい
 call unite#custom_default_action('file', 'tabopen')
+
+" ~/local/includeにboostのインクルードディレクトリが置いてある
+set path+=~/local/include
+" g++が参照している標準ライブラリのヘッダパス
+" 'gcc -v' で --with-gxx-include-dir のそれ
+set path+=/usr/include/c++/4.2.1
